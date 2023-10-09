@@ -1,4 +1,4 @@
-CREATE TABLE Producto
+CREATE TABLE Productos
 (
     ID_Producto int Primary Key IDENTITY(1,1),
     Nombre_Producto nvarchar(40) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Categoria_Producto
     Nombre NVARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Marca
+CREATE TABLE Marcas
 (
     ID_Marca INT PRIMARY KEY IDENTITY(1,1),
     Nombre NVARCHAR(50) NOT NULL
