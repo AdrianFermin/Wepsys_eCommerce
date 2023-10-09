@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Conexion Productos
+//Conexion Producto
 builder.Services.AddDbContext<ProductosContext> (options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionProductos")));
 
