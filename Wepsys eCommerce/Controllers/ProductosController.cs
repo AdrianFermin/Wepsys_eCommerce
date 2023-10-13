@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Wepsys_eCommerce.Dto.Productos;
 using Wepsys_eCommerce.Model;
 
 namespace Wepsys_eCommerce.Controllers
@@ -83,16 +84,28 @@ namespace Wepsys_eCommerce.Controllers
         // POST: api/Productos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Productos>> PostProductos(Productos productos)
+        public async Task<ActionResult<Productos>> PostProductos(ProductosDto productoDto)
         {
           if (_context.Productos == null)
           {
               return Problem("Entity set 'ProductosContext.Productos'  is null.");
           }
+
+            Productos productos = new Productos() { 
+                Nombre_Producto = productoDto.Nombre_Producto,
+                Descripcion = productoDto.Descripcion,
+                Precio = productoDto.Precio,
+                Stock = productoDto.Stock,
+                Id_Proveedor = productoDto.Id_Proveedor,
+                Id_Marca = productoDto.Id_Marca,
+                Id_Categoria_Producto = productoDto.Id_Categoria_Producto
+            };
+
             _context.Productos.Add(productos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProductos", new { id = productos.Id_Producto }, productos);
+            return Ok();
         }
 
         // DELETE: api/Productos/5
